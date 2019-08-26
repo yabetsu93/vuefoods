@@ -1,0 +1,132 @@
+<template>
+  <div>
+    <v-container fluid>
+      <h2>Foods</h2>
+      <v-row>
+        <v-btn>Add new Food</v-btn> <br />
+        <v-btn>Reset Food Items</v-btn>
+      </v-row>
+      <v-container fluid flex>
+        <v-simple-table>
+          <thead>
+            <tr>
+              <th class="text-left">ID</th>
+              <th class="text-left">Name</th>
+              <th class="text-left">Calories</th>
+              <th class="text-left">Fat</th>
+              <th class="text-left">Carbs</th>
+              <th class="text-left">Edit</th>
+              <th class="text-left">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in desserts" :key="item.index">
+              <td>{{ (item.index = index) }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.calories }}</td>
+              <td>{{ item.fat }}</td>
+              <td>{{ item.carbs }}</td>
+              <td>
+                <v-btn
+                  class="ma-2"
+                  tile
+                  @click.native="editRecordDialog(item, index)"
+                >
+                  Edit
+                </v-btn>
+              </td>
+              <td>
+                <v-btn
+                  class="ma-2"
+                  tile
+                  @click.native="deleteRecordDialog(item, index)"
+                >
+                  Delete
+                </v-btn>
+              </td>
+            </tr>
+          </tbody>
+        </v-simple-table>
+      </v-container>
+      <v-row justify="center">
+        <v-dialog v-model="dialogDelete" persistent max-width="290">
+          <template v-slot:activator="{ on }">
+            <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
+          </template>
+          <v-card :items="foodDetail">
+            <v-card-title class="headline"
+              >Would you like to delete the record?</v-card-title
+            >
+            <v-card-text
+              >By deleting this record means no longer be retrieved is this
+              ok?</v-card-text
+            >
+            <dl>
+              <dt>ID</dt>
+              <dd>{{ foodDetail.index }}</dd>
+              <dt>Name</dt>
+              <dd>{{ foodDetail.name }}</dd>
+              <dt>Calories</dt>
+              <dd>{{ foodDetail.calories }}</dd>
+              <dt>Fat</dt>
+              <dd>{{ foodDetail.fat }}</dd>
+              <dt>Carbs</dt>
+              <dd>{{ foodDetail.carbs }}</dd>
+            </dl>
+            <v-card-actions>
+              <div class="flex-grow-1"></div>
+              <v-btn color="green darken-1" text @click="dialogDelete = false"
+                >No</v-btn
+              >
+              <v-btn
+                color="green darken-1"
+                text
+                @click="deleteSelectedRecord(foodDetail.index)"
+                >Yes</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
+      <v-row justify="center">
+        <v-dialog v-model="dialogEdit" persistent max-width="500">
+          <template v-slot:activator="{ on }">
+            <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
+          </template>
+          <v-card :items="foodDetail">
+            <v-card-title class="headline">Update Food Record</v-card-title>
+            <v-card-text>Update the content of your favorite food.</v-card-text>
+            <dl>
+              <dt>Name</dt>
+              <dd>{{ foodDetail.name }}</dd>
+              <dt>Calories</dt>
+              <dd>{{ foodDetail.calories }}</dd>
+              <dt>Fat</dt>
+              <dd>{{ foodDetail.fat }}</dd>
+              <dt>Carbs</dt>
+              <dd>{{ foodDetail.carbs }}</dd>
+            </dl>
+            <v-card-actions>
+              <div class="flex-grow-1"></div>
+              <v-btn
+                color="green darken-1"
+                text
+                @click.native="dialogEdit = false"
+                >No</v-btn
+              >
+              <v-btn
+                color="green darken-1"
+                text
+                @click.native="editSelectedRecord()"
+                >Yes</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
+    </v-container>
+  </div>
+</template>
+
+<script src="./FoodsList.ts" lang="ts"></script>
+<style src="./FoodsList.scss" lang="scss"></style>
