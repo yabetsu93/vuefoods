@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container fluid>
-      <h2>Foods</h2>
+      <h2 align="center">Foods</h2>
       <v-row>
         <v-btn>Add new Food</v-btn> <br />
         <v-btn>Reset Food Items</v-btn>
@@ -31,7 +31,7 @@
                   class="ma-2"
                   tile
                   color="success"
-                  @click.native="editRecordDialog(item, index)"
+                  @click.stop="editRecordDialog(item, index)"
                 >
                    <v-icon left>mdi-pencil</v-icon>Edit
                 </v-btn>
@@ -41,7 +41,7 @@
                   class="ma-2"
                   tile
                   color="warning"
-                  @click.native="deleteRecordDialog(item, index)"
+                  @click.stop="deleteRecordDialog(item, index)"
                 >
                   <v-icon>mdi-delete</v-icon>Delete
                 </v-btn>
@@ -60,8 +60,7 @@
               >By deleting this record means no longer be retrieved is this
               ok?</v-card-text
             >
-           
-               <dl>
+               <dl class="left-margin">
                 <dt>ID</dt>
                 <dd>{{ foodDetail.index }}</dd>
                 <dt>Name</dt>
@@ -73,7 +72,6 @@
                 <dt>Carbs</dt>
                 <dd>{{ foodDetail.carbs }}</dd>
               </dl>
-       
             <v-card-actions>
               <div class="flex-grow-1"></div>
               <v-btn color="green darken-1" text @click="dialogDelete = false"
@@ -94,18 +92,42 @@
           <v-card :items="foodDetail">
             <v-card-title class="headline">Update Food Record</v-card-title>
             <v-card-text>Update the content of your favorite food.</v-card-text>
-               <dl>
-                <dt>ID</dt>
-                <dd>{{ foodDetail.index }}</dd>
-                <dt>Name</dt>
-                <dd>{{ foodDetail.name }}</dd>
-                <dt>Calories</dt>
-                <dd>{{ foodDetail.calories }}</dd>
-                <dt>Fat</dt>
-                <dd>{{ foodDetail.fat }}</dd>
-                <dt>Carbs</dt>
-                <dd>{{ foodDetail.carbs }}</dd>
-              </dl>
+              <v-form class="left-margin">
+                <v-container>
+                  <v-row>
+                  <v-col cols="3" sm="3">
+                      <v-text-field
+                        v-model="foodDetail.name"
+                        label="Name"
+                        outlined
+                      ></v-text-field>
+                  </v-col>
+                 <v-col cols="3" sm="3">
+                      <v-text-field
+                        v-model="foodDetail.calories"
+                        label="Calories"
+                        outlined
+                      ></v-text-field>
+                  </v-col> 
+                  </v-row>
+                  <v-row>
+                     <v-col cols="3" sm="3">
+                      <v-text-field
+                        v-model="foodDetail.fat"
+                        label="Fat"
+                        outlined
+                      ></v-text-field>
+                  </v-col>
+                  <v-col cols="3" sm="3">
+                      <v-text-field
+                        v-model="foodDetail.carbs"
+                        label="Carbs"
+                        outlined
+                      ></v-text-field>
+                  </v-col>
+                  </v-row>
+                </v-container>
+              </v-form>
             <v-card-actions>
               <div class="flex-grow-1"></div>
               <v-btn
