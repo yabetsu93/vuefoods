@@ -7,4 +7,8 @@ start () {
 fix () {
     npm run lint
 }
+
+install () {
+    npm install
+}
 $*

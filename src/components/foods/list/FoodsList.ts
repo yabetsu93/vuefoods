@@ -1,5 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { FoodInfo } from '@/utils/utils.ts'; // for interfacing type strict
+import store from '@/services/store.ts';
 
 @Component
 export default class FoodList extends Vue {
@@ -8,6 +9,10 @@ export default class FoodList extends Vue {
   public dialogDelete: boolean = false;
   public dialogAddFood: boolean = false;
   public foodDetail: FoodInfo = {} as FoodInfo;
+
+  get aDatas() { return store.state.afterFoodDatas; }
+  get fDatas() { return store.state.foodDatas; }
+  get isFArchived() { return store.state.isArchived; }
 
   public headers = [
     {
@@ -109,10 +114,12 @@ export default class FoodList extends Vue {
   public updateDesserts: any;
   constructor() {
     super();
-  }
+}
 
-  public method() {
-    this.updateDesserts = this.desserts;
+  public mounted() {
+    store.commit('SET_ORIGINAL_FOOD_DATAS', this.desserts);
+    store.commit('SET_AFTER_FOOD_DATAS', this.desserts);
+    store.commit('SET_ISARCHIVED', false);
   }
 
   public editRecordDialog(info: FoodInfo, index: number) {
@@ -130,7 +137,7 @@ export default class FoodList extends Vue {
     if (index > -1) {
       this.desserts.splice(index, 1);
     }
-    this.updateDesserts = this.desserts;
+    store.commit('SET_ISARCHIVED', true);
   }
 
   public editSelectedRecord(info: FoodInfo, index: number) {
