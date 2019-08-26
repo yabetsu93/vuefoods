@@ -30,18 +30,20 @@
                 <v-btn
                   class="ma-2"
                   tile
+                  color="success"
                   @click.native="editRecordDialog(item, index)"
                 >
-                  Edit
+                   <v-icon left>mdi-pencil</v-icon>Edit
                 </v-btn>
               </td>
               <td>
                 <v-btn
                   class="ma-2"
                   tile
+                  color="warning"
                   @click.native="deleteRecordDialog(item, index)"
                 >
-                  Delete
+                  <v-icon>mdi-delete</v-icon>Delete
                 </v-btn>
               </td>
             </tr>
@@ -49,10 +51,7 @@
         </v-simple-table>
       </v-container>
       <v-row justify="center">
-        <v-dialog v-model="dialogDelete" persistent max-width="290">
-          <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
-          </template>
+        <v-dialog v-model="dialogDelete" persistent max-width="400">
           <v-card :items="foodDetail">
             <v-card-title class="headline"
               >Would you like to delete the record?</v-card-title
@@ -61,18 +60,20 @@
               >By deleting this record means no longer be retrieved is this
               ok?</v-card-text
             >
-            <dl>
-              <dt>ID</dt>
-              <dd>{{ foodDetail.index }}</dd>
-              <dt>Name</dt>
-              <dd>{{ foodDetail.name }}</dd>
-              <dt>Calories</dt>
-              <dd>{{ foodDetail.calories }}</dd>
-              <dt>Fat</dt>
-              <dd>{{ foodDetail.fat }}</dd>
-              <dt>Carbs</dt>
-              <dd>{{ foodDetail.carbs }}</dd>
-            </dl>
+           
+               <dl>
+                <dt>ID</dt>
+                <dd>{{ foodDetail.index }}</dd>
+                <dt>Name</dt>
+                <dd>{{ foodDetail.name }}</dd>
+                <dt>Calories</dt>
+                <dd>{{ foodDetail.calories }}</dd>
+                <dt>Fat</dt>
+                <dd>{{ foodDetail.fat }}</dd>
+                <dt>Carbs</dt>
+                <dd>{{ foodDetail.carbs }}</dd>
+              </dl>
+       
             <v-card-actions>
               <div class="flex-grow-1"></div>
               <v-btn color="green darken-1" text @click="dialogDelete = false"
@@ -89,23 +90,22 @@
         </v-dialog>
       </v-row>
       <v-row justify="center">
-        <v-dialog v-model="dialogEdit" persistent max-width="500">
-          <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
-          </template>
+        <v-dialog v-model="dialogEdit" persistent max-width="400">
           <v-card :items="foodDetail">
             <v-card-title class="headline">Update Food Record</v-card-title>
             <v-card-text>Update the content of your favorite food.</v-card-text>
-            <dl>
-              <dt>Name</dt>
-              <dd>{{ foodDetail.name }}</dd>
-              <dt>Calories</dt>
-              <dd>{{ foodDetail.calories }}</dd>
-              <dt>Fat</dt>
-              <dd>{{ foodDetail.fat }}</dd>
-              <dt>Carbs</dt>
-              <dd>{{ foodDetail.carbs }}</dd>
-            </dl>
+               <dl>
+                <dt>ID</dt>
+                <dd>{{ foodDetail.index }}</dd>
+                <dt>Name</dt>
+                <dd>{{ foodDetail.name }}</dd>
+                <dt>Calories</dt>
+                <dd>{{ foodDetail.calories }}</dd>
+                <dt>Fat</dt>
+                <dd>{{ foodDetail.fat }}</dd>
+                <dt>Carbs</dt>
+                <dd>{{ foodDetail.carbs }}</dd>
+              </dl>
             <v-card-actions>
               <div class="flex-grow-1"></div>
               <v-btn
