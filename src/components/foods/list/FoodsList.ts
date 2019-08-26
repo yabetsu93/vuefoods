@@ -6,6 +6,7 @@ export default class FoodList extends Vue {
 
   public dialogEdit: boolean = false;
   public dialogDelete: boolean = false;
+  public dialogAddFood: boolean = false;
   public foodDetail: FoodInfo = {} as FoodInfo;
 
   public headers = [
