@@ -20,7 +20,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in desserts" :key="item.index">
+            <tr v-for="(item, index) in aDatas" :key="item.index">
               <td>{{ (item.index = index) }}</td>
               <td>{{ item.name }}</td>
               <td>{{ item.calories }}</td>
