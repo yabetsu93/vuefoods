@@ -58,20 +58,47 @@
             >
             <v-card-text
               >By deleting this record means no longer be retrieved is this
-              ok?</v-card-text
-            >
-               <dl class="left-margin">
-                <dt>ID</dt>
-                <dd>{{ foodDetail.index }}</dd>
-                <dt>Name</dt>
-                <dd>{{ foodDetail.name }}</dd>
-                <dt>Calories</dt>
-                <dd>{{ foodDetail.calories }}</dd>
-                <dt>Fat</dt>
-                <dd>{{ foodDetail.fat }}</dd>
-                <dt>Carbs</dt>
-                <dd>{{ foodDetail.carbs }}</dd>
-              </dl>
+              ok?</v-card-text>
+                <v-form class="left-margin">
+                <v-container>
+                  <v-row>
+                  <v-col cols="3" sm="3">
+                      <v-text-field
+                        v-model="foodDetail.name"
+                        label="Name"
+                        outlined
+                        disabled
+                      ></v-text-field>
+                  </v-col>
+                 <v-col cols="3" sm="3">
+                      <v-text-field
+                        v-model="foodDetail.calories"
+                        label="Calories"
+                        outlined
+                        disabled
+                      ></v-text-field>
+                  </v-col> 
+                  </v-row>
+                  <v-row>
+                     <v-col cols="3" sm="3">
+                      <v-text-field
+                        v-model="foodDetail.fat"
+                        label="Fat"
+                        outlined
+                        disabled
+                      ></v-text-field>
+                  </v-col>
+                  <v-col cols="3" sm="3">
+                      <v-text-field
+                        v-model="foodDetail.carbs"
+                        label="Carbs"
+                        outlined
+                        disabled
+                      ></v-text-field>
+                  </v-col>
+                  </v-row>
+                </v-container>
+              </v-form>
             <v-card-actions>
               <div class="flex-grow-1"></div>
               <v-btn color="green darken-1" text @click="dialogDelete = false"
