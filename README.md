@@ -1,13 +1,24 @@
 # vuefoods
 
+## Tech stack used
+```
+vue-router
+store
+typescript
+vuejs3
+vuetify 2
+scss - styling
+vue-cli
+```
+
 ## Project setup
 ```
-npm install
+./do.sh install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+./do.sh start
 ```
 
 ### Compiles and minifies for production
@@ -22,7 +33,7 @@ npm run test
 
 ### Lints and fixes files
 ```
-npm run lint
+./do.sh fix
 ```
 
 ### Customize configuration
