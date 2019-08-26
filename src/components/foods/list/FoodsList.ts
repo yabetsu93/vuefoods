@@ -1,5 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { FoodInfo } from '@/utils/utils.ts'; // for interfacing type strict
+import store from '@/services/store.ts';
 
 @Component
 export default class FoodList extends Vue {
@@ -109,10 +110,12 @@ export default class FoodList extends Vue {
   public updateDesserts: any;
   constructor() {
     super();
-  }
+}
 
   public method() {
     this.updateDesserts = this.desserts;
+    store.commit('SET_ORIGINAL_FOOD_DATAS', this.desserts);
+    store.commit('SET_AFTER_FOOD_DATAS', this.desserts);
   }
 
   public editRecordDialog(info: FoodInfo, index: number) {
